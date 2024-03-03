@@ -29,24 +29,24 @@ public class FrogJump {
         }
         return Math.min(left,right);
     }
-    private static int solveRecMemoization(int n, int[] heights,int[] dp) {
-        if(n==0) return 0;
-        if(dp[n]!=-1){
-            return dp[n];
+    private static int solveRecMemoization(int index, int[] heights,int[] dp) {
+        if(index==0) return 0;
+        if(dp[index]!=-1){
+            return dp[index];
         }
-        int left=  solveRecMemoization(n-1,heights,dp) + Math.abs(heights[n]-heights[n-1]);
+        int left=  solveRecMemoization(index-1,heights,dp) + Math.abs(heights[index]-heights[index-1]);
         int right= Integer.MAX_VALUE;
-        if(n>1) {
-            right = solveRecMemoization(n - 2, heights,dp) + Math.abs(heights[n] - heights[n - 2]);
+        if(index>1) {
+            right = solveRecMemoization(index - 2, heights,dp) + Math.abs(heights[index] - heights[index - 2]);
         }
-        return dp[n]= Math.min(left,right);
+        return dp[index]= Math.min(left,right);
     }
 
-    private static int solveRecTabulation(int n, int[] heights) {
-        int [] dp= new int[n+1];
+    private static int solveRecTabulation(int index, int[] heights) {
+        int [] dp= new int[index+1];
         dp[0]=0;
 
-        for(int i=1;i<n;i++){
+        for(int i=1;i<index;i++){
             int left= dp[i-1]+Math.abs(heights[i]-heights[i-1]);
             int right = Integer.MAX_VALUE;
             if(i>1) {
@@ -54,14 +54,14 @@ public class FrogJump {
             }
             dp[i]= Math.min(left,right);
         }
-        return dp[n-1];
+        return dp[index-1];
     }
 
-    private static int solveRecTabulationSpaceOptimised(int n, int[] heights) {
+    private static int solveRecTabulationSpaceOptimised(int index, int[] heights) {
 
         int curr=0,prev=0,prev2=0;
         //for i=1,i=0 is the prev hence prev=dp[0]=0
-        for(int i=1;i<n;i++){
+        for(int i=1;i<index;i++){
             int left= prev+Math.abs(heights[i]-heights[i-1]);
             int right = Integer.MAX_VALUE;
             if(i>1) {
