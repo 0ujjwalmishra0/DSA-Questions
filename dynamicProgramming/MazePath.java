@@ -1,7 +1,7 @@
 package dynamicProgramming;
 
 import java.util.Arrays;
-
+//https://leetcode.com/problems/unique-paths/description/
 public class MazePath {
     public static void main(String[] args) {
         int row=23,col=12;
