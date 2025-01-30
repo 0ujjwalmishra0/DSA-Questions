@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class CountSubsetSumK {
     public static void main(String[] args) {
-        int [] a= new int[]{2,2,1,7,3,3,1,7,9,6,7,4,2,7,5};
-        int n=15,target=7;
+        int [] a= new int[]{1,2,3};
+        int n=3,target=3;
         System.out.println(findWays(a,target));
 
     }
@@ -17,7 +17,12 @@ public class CountSubsetSumK {
         // Initialize DP table with -1 (unprocessed)
         for (int[] row : dp)
             Arrays.fill(row, -1);
-        return solveRec(num,dp, n-1, target);
+
+        int res=0;
+        for(int i=num.length-1;i>=0;i--){
+            res+= solveRec(num,dp, i, target);
+        }
+        return res;
     }
     private static int solveRec(int[] a,int[][] dp, int index,int target){
         if(target==0) return 1;

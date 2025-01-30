@@ -44,21 +44,5 @@ public class DetectCycleDirectedGraph {
         return false;
     }
 
-    private boolean detectCycleBFS(ArrayList<ArrayList<Integer>> adj,boolean[] visited,boolean[] visitedPath,int source){
-        visited[source]=true;
-        visitedPath[source]=true;
-        Queue<Integer>  queue = new LinkedList<>();
-        queue.add(source);
-        while(!queue.isEmpty()){
-            int curr= queue.poll();
-            for(int node: adj.get(curr)){
-                if(!visited[node]){
-                    queue.add(node);
-                    visited[node]=true;
-                    visitedPath[node]=true;
-                }
-            }
-        }
-    }
 
 }
