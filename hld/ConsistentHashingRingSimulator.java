@@ -3,7 +3,7 @@ import java.util.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class ConsistentHashing {
+public class ConsistentHashingRingSimulator {
 
     static class ConsistentHashRing {
         private final TreeMap<Integer, String> ring = new TreeMap<>();
