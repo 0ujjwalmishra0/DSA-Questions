@@ -16,6 +16,10 @@ public class Server {
         if (activeConnections > 0) activeConnections--;
     }
 
+    public String getServerName(){
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return name + " (active=" + activeConnections + ")";

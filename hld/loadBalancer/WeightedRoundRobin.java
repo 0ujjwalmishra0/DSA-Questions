@@ -1,19 +1,21 @@
 package hld.loadBalancer;
+import hld.loadBalancer.server.WeightedServer;
+
 import java.util.*;
 
 // --------------- WEIGHTED ROUND ROBIN -----------------
 class WeightedRoundRobin {
-    List<hld.loadBalancer.server.WeightedServer> servers;
+    List<WeightedServer> servers;
     int totalWeight;
 
-    public WeightedRoundRobin(List<hld.loadBalancer.server.WeightedServer> servers) {
+    public WeightedRoundRobin(List<WeightedServer> servers) {
         this.servers = servers;
         this.totalWeight = servers.stream().mapToInt(s -> s.weight).sum();
     }
 
-    public hld.loadBalancer.server.WeightedServer getNextServer() {
-        hld.loadBalancer.server.WeightedServer best = null;
-        for (hld.loadBalancer.server.WeightedServer s : servers) {
+    public WeightedServer getNextServer() {
+        WeightedServer best = null;
+        for (WeightedServer s : servers) {
             s.currentWeight += s.weight;
             if (best == null || s.currentWeight > best.currentWeight) {
                 best = s;

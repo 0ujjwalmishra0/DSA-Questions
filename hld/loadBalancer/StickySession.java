@@ -15,7 +15,9 @@ class StickySession {
 
     public Server getServerForIP(String ip) {
         int index = Math.abs(hash(ip)) % servers.size();
-        return servers.get(index);
+        Server server=  servers.get(index);
+        server.handleRequest();
+        return server;
     }
 
     private int hash(String key) {
